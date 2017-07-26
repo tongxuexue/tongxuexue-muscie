@@ -1,68 +1,16 @@
 <template>
-  <div class="recommend">
-    <div class="recommend-content">
-      <div class="slider-wrapper">
-      </div>
-      <div class="recommend-list">
-<<<<<<< HEAD
-        <h1 class="list-title">热门歌曲推荐</h1>
-=======
-        <h1 class="list-title">热门歌单推荐</h1>
->>>>>>> 10c5929381545205202e009e9f6f6a570e3d9c13
-        <ul>
-        </ul>
-      </div>
+  <div class="slider">
+    <div class="slider-group">
+      <slot>
+      </slot>
     </div>
+    <div class="dots"></div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-<<<<<<< HEAD
-  import {getRecommend} from 'api/recommend'
-  import {ERR_OK} from 'api/config'
-=======
-  import Slider from 'base/slider/slider'
-  import {getRecommend} from 'api/recommend'
-  import {ERR_OK} from 'api/config'
-
-  export default {
-    data() {
-      return {}
-    },
-    created() {
-      this._getRecommend()
-    },
-    methods: {
-      _getRecommend() {
-        getRecommend().then((res) => {
-          if (res.code === ERR_OK) {
-            console.log(res.data.slider)
-          }
-        })
-      }
-    },
-    components: {
-      Slider
-    }
-  }
 </script>
->>>>>>> 10c5929381545205202e009e9f6f6a570e3d9c13
 
-  export default {
-    created () {
-      this._getRecommend()
-    },
-    methods: {
-      _getRecommend () {
-        getRecommend().then((res) => {
-          if (res.code === ERR_OK) {
-            console.log(res.data.slider)
-          }
-        })
-      }
-    }
-  }
-</script>
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
 
@@ -77,8 +25,8 @@
       .slider-wrapper
         position: relative
         width: 100%
-        /*height: 0*/
-        /*padding-top: 40%*/
+        height: 0
+        padding-top: 40%
         overflow: hidden
         .slider-content
           position: absolute
@@ -120,8 +68,4 @@
         width: 100%
         top: 50%
         transform: translateY(-50%)
-<<<<<<< HEAD
-
-=======
->>>>>>> 10c5929381545205202e009e9f6f6a570e3d9c13
 </style>
