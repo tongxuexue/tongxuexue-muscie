@@ -49,12 +49,11 @@
     },
     methods: {
       _setSliderWidth() {
-        this.childern = this.$refs.sliderGroup.children
-        console.log(this.children.length)
+        this.children = this.$refs.sliderGroup.children
         let width = 0
         let sliderWidth = this.$refs.slider.clientWidth
-        for (let i = 0; i < this.childern.length; i++) {
-          let child = this.childern[i]
+        for (let i = 0; i < this.children.length; i++) {
+          let child = this.children[i]
           addClass(child, 'slider-item')
 
           child.style.width = sliderWidth + 'px'
@@ -86,7 +85,6 @@
         })
       },
       _initDots() {
-        // console.log(this.children.length)
         this.dots = new Array(this.children.length)
       }
     }
