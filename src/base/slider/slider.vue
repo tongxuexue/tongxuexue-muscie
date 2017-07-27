@@ -4,7 +4,9 @@
       <slot>
       </slot>
     </div>
-    <div class="dots"></div>
+    <div class="dots">
+      <span class="dot" v-for="(item, index) in dots" :class="{active: currentPageIndex === index}"></span>
+    </div>
   </div>
 </template>
 
@@ -27,15 +29,28 @@
         default: true
       }
     },
+    data() {
+      return {
+        dots: [],
+        currentPageIndex: 0
+      }
+    },
     mounted() {
+//      this.$nextTick(() => {
+//        this._setSliderWidth()
+//        this._initDots()
+//        this._initSlider()
+//      })
       setTimeout(() => {
         this._setSliderWidth()
+        this._initDots()
         this._initSlider()
       }, 20)
     },
     methods: {
       _setSliderWidth() {
         this.childern = this.$refs.sliderGroup.children
+        console.log(this.children.length)
         let width = 0
         let sliderWidth = this.$refs.slider.clientWidth
         for (let i = 0; i < this.childern.length; i++) {
@@ -56,11 +71,23 @@
           scrollY: false,
           momentum: false,
           snap: true,
-          snaploop: this.loop,
+          snapLoop: this.loop,
           snapThreshold: 0.3,
           snapSpeed: 400,
           click: true
         })
+
+        this.slider.on('scrollEnd', () => {
+          let pageIndex = this.slider.getCurrentPage().pageX
+          if (this.loop) {
+            pageIndex -= 1
+          }
+          this.currentPageIndex = pageIndex
+        })
+      },
+      _initDots() {
+        // console.log(this.children.length)
+        this.dots = new Array(this.children.length)
       }
     }
   }
