@@ -21,7 +21,7 @@
 
 <script type="text/ecmascript-6">
   import Slider from 'base/slider/slider'
-  import {getRecommend} from 'api/recommend'
+  import {getRecommend, getDiscList} from 'api/recommend'
   import {ERR_OK} from 'api/config'
 
   export default {
@@ -32,6 +32,7 @@
     },
     created() {
       this._getRecommend()
+      this._getDiscList()
     },
     methods: {
       _getRecommend() {
@@ -39,6 +40,14 @@
           if (res.code === ERR_OK) {
             this.recommends = res.data.slider
             console.log(res.data.slider)
+          }
+        })
+      },
+      _getDiscList() {
+        getDiscList().then((res) => {
+          if (res.code === ERR_OK) {
+            // this.recommends = res.data.slider
+            console.log(res.data.list)
           }
         })
       }
@@ -64,15 +73,15 @@
       .slider-wrapper
         position: relative
         width: 100%
-        //height: 0
-        //padding-top: 40%
         overflow: hidden
-        .slider-content
-          position: absolute
-          top: 0
-          left: 0
-          width: 100%
-          height: 100%
+      //height: 0
+      //padding-top: 40%
+        /*.slider-content*/
+          /*position: absolute*/
+          /*top: 0*/
+          /*left: 0*/
+          /*width: 100%*/
+          /*height: 100%*/
       .recommend-list
         .list-title
           height: 65px
