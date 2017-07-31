@@ -109,10 +109,6 @@
         if (this.loop) {
           pageIndex += 1
         }
-<<<<<<< HEAD
-=======
-
->>>>>>> 06328826991e9bb8ed4e38ea0e24369ea339a6f6
         this.timer = setTimeout(() => {
           this.slider.goToPage(pageIndex, 0, 400)
         }, this.interval)
