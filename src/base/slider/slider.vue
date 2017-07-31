@@ -25,8 +25,8 @@
         default: true
       },
       interval: {
-        type: Boolean,
-        default: true
+        type: Number,
+        default: 4000
       }
     },
     data() {
@@ -47,6 +47,7 @@
         this._initSlider()
 
         if (this.autoPlay) {
+          clearTimeout(this.timer)
           this._play()
         }
       }, 20)
@@ -84,8 +85,7 @@
           snap: true,
           snapLoop: this.loop,
           snapThreshold: 0.3,
-          snapSpeed: 400,
-          click: true
+          snapSpeed: 400
         })
 
         this.slider.on('scrollEnd', () => {
@@ -109,10 +109,17 @@
         if (this.loop) {
           pageIndex += 1
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 06328826991e9bb8ed4e38ea0e24369ea339a6f6
         this.timer = setTimeout(() => {
           this.slider.goToPage(pageIndex, 0, 400)
         }, this.interval)
       }
+    },
+    destroyed() {
+      clearTimeout(this.timer)
     }
   }
 </script>
