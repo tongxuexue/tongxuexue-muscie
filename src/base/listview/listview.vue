@@ -12,7 +12,7 @@
         </ul>
       </li>
     </ul>
-    <div class="list-shortcut" @touchstart="onShortcutTouchStart" @touchmove.stop.prevent="onShortcutTouchMove">
+    <div class="list-shortcut" @touchstart.stop.prevent="onShortcutTouchStart" @touchmove.stop.prevent="onShortcutTouchMove">
       <ul>
         <li v-for="(item, index) in shortcutList" class="item" :class="{'current':currentIndex===index}"
             :data-index="index">
@@ -86,6 +86,7 @@
           height += item.clientHeight
           this.listHeight.push(height)
         }
+        // console.log(this.listHeight)
       }
     },
     watch: {
@@ -95,10 +96,14 @@
         }, 20)
       },
       scrollY(newY) {
+        console.log(this.listHeight)
         const listHeight = this.listHeight
         for (let i = 0; i < listHeight.length; i++) {
           let height1 = listHeight[i]
           let height2 = listHeight[i + 1]
+//          console.log('newY    ' + newY)
+          console.log('1111111    ' + height1)
+//          console.log('2222222    ' + height2)
           if (height2 || (-newY > height1 && -newY < height2)) {
             this.currentIndex = i
             return
