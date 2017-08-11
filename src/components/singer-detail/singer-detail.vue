@@ -63,11 +63,9 @@
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-  @import "~common/stylus/variable"
-
   .slide-enter-active, .slide-leave-active
-    transition: all 0.3s
+    transition: all 5s
 
   .slide-enter, .slide-leave-to
-    transition: translate3d(100%, 0, 0)
+    transform: translate3d(100px, 0, 0)
 </style>
