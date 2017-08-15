@@ -69,8 +69,8 @@
 <script type="text/ecmascript-6">
   import {mapGetters, mapMutations} from 'vuex'
   import animations from 'create-keyframe-animation'
-  // import Velocity from 'velocity-animate'
-  import RegisterEffect from 'velocity-animate/velocity.ui'
+  import Velocity from 'velocity-animate'
+  // import RegisterEffect from 'velocity-animate/velocity.ui'
   import {prefixStyle} from 'common/js/dom'
 
   const transform = prefixStyle('transform')
@@ -94,7 +94,7 @@
           [{translateX: 0, translateY: 0, scale: 1.1}, 0.6],
           [{scale: 1}, 0.4]
         ]
-        RegisterEffect('test', {
+        Velocity.RegisterEffect('test', {
           defaultDuration: 400,
           calls: animation
         })
