@@ -69,6 +69,7 @@
 <script type="text/ecmascript-6">
   import {mapGetters, mapMutations} from 'vuex'
   import animations from 'create-keyframe-animation'
+  // import Velocity from 'velocity-animate'
   import {prefixStyle} from 'common/js/dom'
 
   const transform = prefixStyle('transform')
@@ -84,6 +85,16 @@
       },
       enter(el, done) {
         const {x, y, scale} = this._getPostAndScale()
+//        let animation = [
+//          [{translateX: x, translateY: y, scale: scale}, 0],
+//          [{translateX: 0, translateY: 0, scale: 1.1}, 0.6],
+//          [{scale: 1}, 0.4]
+//        ]
+//        Velocity.RegisterEffect('test', {
+//          defaultDuration: 400,
+//          call: animation
+//        })
+//        this.$refs.cdWrapper.velocity('test', { complete: done })
 
         let animation = {
           0: {
