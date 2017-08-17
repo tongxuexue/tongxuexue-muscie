@@ -69,8 +69,6 @@
 <script type="text/ecmascript-6">
   import {mapGetters, mapMutations} from 'vuex'
   import animations from 'create-keyframe-animation'
-  import Velocity from 'velocity-animate'
-  // import RegisterEffect from 'velocity-animate/velocity.ui'
   import {prefixStyle} from 'common/js/dom'
 
   const transform = prefixStyle('transform')
@@ -87,42 +85,29 @@
       enter(el, done) {
         const {x, y, scale} = this._getPostAndScale()
 
-        // Velocity(el, {translateX: x, translateY: y, scale: scale}, 500)
-
-        let animation = [
-          [{translateX: x, translateY: y, scale: scale}, 0],
-          [{translateX: 0, translateY: 0, scale: 1.1}, 0.6],
-          [{scale: 1}, 0.4]
-        ]
-        Velocity.RegisterEffect('test', {
-          defaultDuration: 400,
-          calls: animation
+        let animation = {
+          0: {
+            transform: `translate3d(${x}px, ${y}px, 0) scale(${scale})`
+          },
+          60: {
+            transform: `translate3d(0, 0, 0) scale(1.1)`
+          },
+          100: {
+            transform: `translate3d(0, 0, 0) scale(1)`
+          }
+        }
+        // 注册animations
+        animations.registerAnimation({
+          name: 'move',
+          animation,
+          presets: {
+            duration: 400,
+            easing: 'linear'
+          }
         })
-        el.velocity('test')
 
-//        let animation = {
-//          0: {
-//            transform: `translate3d(${x}px, ${y}px, 0) scale(${scale})`
-//          },
-//          60: {
-//            transform: `translate3d(0, 0, 0) scale(1.1)`
-//          },
-//          100: {
-//            transform: `translate3d(0, 0, 0) scale(1)`
-//          }
-//        }
-//        // 注册animations
-//        animations.registerAnimation({
-//          name: 'move',
-//          animation,
-//          presets: {
-//            duration: 400,
-//            easing: 'linear'
-//          }
-//        })
-//
-//        // 运行animations
-//        animations.runAnimation(this.$refs.cdWrapper, 'move', done)
+        // 运行animations
+        animations.runAnimation(this.$refs.cdWrapper, 'move', done)
       },
       afterEnter() {
         animations.unregisterAnimation('move')
